@@ -21,12 +21,13 @@ document.body.appendChild(divMain);
 // filhosDivMain.style.borderColor = 'black 1px';
 
 const colorGenerator = () => {
-  const r = parseInt(Math.random() * 256);
-  const g = parseInt(Math.random() * 256);
-  const b = parseInt(Math.random() * 256);
+  const r = parseInt(Math.random() * 256, 10);
+  const g = parseInt(Math.random() * 256, 10);
+  const b = parseInt(Math.random() * 256, 10);
   return `rgb(${r}, ${g}, ${b})`;
 };
 
+// Demorei para descobri o erro do parseInt para colocar o 10 depois da vírgula como segundo parâmetro da função, conforme referência: https://www.w3schools.com/jsref/jsref_parseint.asp
 // Referência do gerador de cores: https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
 // Só coloquei parseInt ao invés de Math.floor porque é o que estamos utilizando no momento.
 
