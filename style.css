@@ -1,0 +1,20 @@
+/* stylelint-disable indentation */
+* {
+    box-sizing: border-box;
+}
+
+#color-palette {
+    margin-left: 50px;
+}
+
+.color {
+    float: left;
+    width: 120px;
+    height: 120px;
+    border: 1px black;
+    margin: 10px;
+}
+
+body {
+    background-color:rgb(244, 255, 243);
+}
