@@ -21,20 +21,20 @@ const colorGenerator = () => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
+// Referência do gerador de cores: https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
+// Só coloquei parseInt ao invés de Math.floor porque é o que estamos utilizando no momento.
+
 const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
 
 for (let index = 0; index < divArray.length; index += 1) {
   const div = document.createElement('div');
   document.body.appendChild(div);
-  div.className = `color div${index}`;
+  div.className = `color color${index}`;
   div.innerHTML = divArray[index];
   div.style.display = 'inline-block';
   div.style.width = '100px';
   div.style.height = '100px';
-  div.style.backgroundColor = colorGenerator;
-  for (let index2 = 0; index2 < divArray.length; index2 += 1) {
-    
-  }
+  div.style.backgroundColor = colorGenerator();
 }
 
 // .mainClass {
