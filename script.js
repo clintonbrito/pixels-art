@@ -4,6 +4,8 @@
 // filhoPrimeiroFilhoDoFilho.id = 'filhoPrimeiroFilhoDoFilho';
 // primeiroFilhoDoFilho.appendChild(filhoPrimeiroFilhoDoFilho);
 
+// 1 - Adicione à página o título "Paleta de Cores".
+
 const body = document.getElementsByTagName('body');
 const h1 = document.createElement('h1');
 h1.id = 'title';
@@ -20,6 +22,19 @@ document.body.appendChild(divMain);
 // const filhosDivMain = divMain.children;
 // filhosDivMain.style.borderColor = 'black 1px';
 
+// 2 - Adicione à página uma paleta contendo quatro cores distintas.
+// 3 - Adicione a cor preta como a primeira cor da paleta de cores.
+
+// const addNewColors = (colors) => {
+//   const collorsPallete = document.getElementsByClassName('color');
+//   for (let index = 0; index < collorsPallete.length; index += 1) {
+//     }
+// }
+
+// addNewColors(['#000000', '#9AA899', '#4A7B9D', '#54577C']);
+
+// Esse código acima foi a primeira tentativa de resolver o requisito 2, mas depois mudei de ideia e parti para outra abordagem de solução, já pensando em gerar as cores aleatoriamente.
+
 const colorGenerator = () => {
   const r = parseInt(Math.random() * 256, 10);
   const g = parseInt(Math.random() * 256, 10);
@@ -27,8 +42,10 @@ const colorGenerator = () => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-// Demorei para descobri o erro do parseInt para colocar o 10 depois da vírgula como segundo parâmetro da função, conforme referência: https://www.w3schools.com/jsref/jsref_parseint.asp
-// Referência do gerador de cores: https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
+// Demorei para descobrir o erro do parseInt para colocar o 10 depois da vírgula como segundo parâmetro da função, conforme referência:
+// https://www.w3schools.com/jsref/jsref_parseint.asp
+// Referência do gerador de cores:
+// https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
 // Só coloquei parseInt ao invés de Math.floor porque é o que estamos utilizando no momento.
 
 const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
@@ -56,12 +73,23 @@ for (let index = 1; index < divArray.length; index += 1) {
   div.style.border = '1px solid rgb(0, 0, 0)';
 }
 
-// Referência para já criar classe, definir o texto e fazer o appendChild tudo de uma vez: https://stackoverflow.com/questions/32670902/create-multiple-elements
+// Referência para já criar classe, definir o texto e fazer o appendChild tudo de uma vez:
+// https://stackoverflow.com/questions/32670902/create-multiple-elements
 
-// const addNewColors = (colors) => {
-//   const collorsPallete = document.getElementsByClassName('color');
-//   for (let index = 0; index < collorsPallete.length; index += 1) {
-//     }
-// }
+// 4 - Adicione um botão para gerar cores aleatórias para a paleta de cores.
 
-// addNewColors(['#000000', '#9AA899', '#4A7B9D', '#54577C']);
+// const title = document.querySelector('#title');
+// title.parentNode
+// divBlack.insertBefore(button, divBlack);
+
+const button = document.createElement('button');
+document.body.appendChild(button);
+document.body.insertBefore(button, divMain);
+button.id = 'button-random-color';
+button.innerHTML = 'Cores aleatórias';
+button.addEventListener('click', colorGenerator());
+
+// Referência para criar o button ANTES da divMain:
+// https://stackoverflow.com/questions/2007357/how-to-set-dom-element-as-first-child
+// Referência para atribuir a função de gerar cores no botão criado:
+// https://stackoverflow.com/questions/67679502/how-to-generate-different-colours-with-button
