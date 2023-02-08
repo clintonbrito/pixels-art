@@ -12,12 +12,13 @@ h1.innerHTML = 'Paleta de Cores';
 
 const divMain = document.createElement('div');
 divMain.id = 'color-palette';
-divMain.style.width = '20px';
-divMain.style.height = '20px';
+// divMain.innerHTML = 'Bem-vindo(a) à paleta de cores do Bill :)';
+divMain.style.width = '1000px';
+divMain.style.height = '50px';
 document.body.appendChild(divMain);
 
-const filhosDivMain = divMain.children;
-filhosDivMain.style.borderColor = 'black 1px';
+// const filhosDivMain = divMain.children;
+// filhosDivMain.style.borderColor = 'black 1px';
 
 const colorGenerator = () => {
   const r = parseInt(Math.random() * 256);
@@ -32,7 +33,7 @@ const colorGenerator = () => {
 const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
 
 const divBlack = document.createElement('div');
-document.body.appendChild(divBlack);
+divMain.appendChild(divBlack);
 divBlack.className = 'color color0';
 divBlack.innerHTML = `${divArray[0]}`;
 divBlack.style.display = 'inline-block';
@@ -40,16 +41,18 @@ divBlack.style.width = '100px';
 divBlack.style.height = '100px';
 divBlack.style.backgroundColor = 'black';
 divBlack.style.color = 'white';
+divBlack.style.border = '1px solid rgb(0, 0, 0)';
 
 for (let index = 1; index < divArray.length; index += 1) {
   const div = document.createElement('div');
-  document.body.appendChild(div);
+  divMain.appendChild(div);
   div.className = `color color${index}`;
   div.innerHTML = divArray[index];
   div.style.display = 'inline-block';
   div.style.width = '100px';
   div.style.height = '100px';
   div.style.backgroundColor = colorGenerator();
+  div.style.border = '1px solid rgb(0, 0, 0)';
 }
 
 // Referência para já criar classe, definir o texto e fazer o appendChild tudo de uma vez: https://stackoverflow.com/questions/32670902/create-multiple-elements
