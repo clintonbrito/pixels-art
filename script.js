@@ -26,7 +26,17 @@ const colorGenerator = () => {
 
 const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
 
-for (let index = 0; index < divArray.length; index += 1) {
+const divBlack = document.createElement('div');
+document.body.appendChild(divBlack);
+divBlack.className = 'color color0';
+divBlack.innerHTML = divArray[0];
+divBlack.style.display = 'inline-block';
+divBlack.style.width = '100px';
+divBlack.style.height = '100px';
+divBlack.style.backgroundColor = 'black';
+divBlack.style.color = 'white';
+
+for (let index = 1; index < divArray.length; index += 1) {
   const div = document.createElement('div');
   document.body.appendChild(div);
   div.className = `color color${index}`;
@@ -36,12 +46,6 @@ for (let index = 0; index < divArray.length; index += 1) {
   div.style.height = '100px';
   div.style.backgroundColor = colorGenerator();
 }
-
-// .mainClass {
-//     display: inline-block;
-//     width: 50px
-//     height: 50px
-// }
 
 // Referência para já criar classe, definir o texto e fazer o appendChild tudo de uma vez: https://stackoverflow.com/questions/32670902/create-multiple-elements
 
