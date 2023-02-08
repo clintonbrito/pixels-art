@@ -12,7 +12,12 @@ h1.innerHTML = 'Paleta de Cores';
 
 const divMain = document.createElement('div');
 divMain.id = 'color-palette';
+divMain.style.width = '20px';
+divMain.style.height = '20px';
 document.body.appendChild(divMain);
+
+const filhosDivMain = divMain.children;
+filhosDivMain.style.borderColor = 'black 1px';
 
 const colorGenerator = () => {
   const r = parseInt(Math.random() * 256);
@@ -29,7 +34,7 @@ const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
 const divBlack = document.createElement('div');
 document.body.appendChild(divBlack);
 divBlack.className = 'color color0';
-divBlack.innerHTML = divArray[0];
+divBlack.innerHTML = `${divArray[0]}`;
 divBlack.style.display = 'inline-block';
 divBlack.style.width = '100px';
 divBlack.style.height = '100px';
