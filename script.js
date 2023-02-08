@@ -93,3 +93,5 @@ button.addEventListener('click', colorGenerator());
 // https://stackoverflow.com/questions/2007357/how-to-set-dom-element-as-first-child
 // Referência para atribuir a função de gerar cores no botão criado:
 // https://stackoverflow.com/questions/67679502/how-to-generate-different-colours-with-button
+
+// 5 - Implemente uma função usando localStorage para que a paleta de cores gerada aleatoriamente seja mantida após recarregar a página.
