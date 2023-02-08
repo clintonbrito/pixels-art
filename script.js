@@ -6,7 +6,7 @@
 
 // 1 - Adicione à página o título "Paleta de Cores".
 
-const body = document.getElementsByTagName('body');
+// const body = document.getElementsByTagName('body');
 const h1 = document.createElement('h1');
 h1.id = 'title';
 document.body.appendChild(h1);
