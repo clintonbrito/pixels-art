@@ -12,12 +12,22 @@ h1.id = 'title';
 document.body.appendChild(h1);
 h1.textContent = 'Paleta de Cores';
 
+const divMainDasMain = document.createElement('div');
+divMainDasMain.id = 'mainDasMain';
+document.body.appendChild(divMainDasMain);
+divMainDasMain.style.display = 'flex';
+divMainDasMain.style.width = '100%';
+divMainDasMain.style.justifyContent = 'center';
+
 const divMain = document.createElement('div');
 divMain.id = 'color-palette';
+divMain.style.width = '50%';
+divMain.style.display = 'flex';
+divMain.style.justifyContent = 'space-evenly';
 // divMain.textContent = 'Bem-vindo(a) à paleta de cores do Bill :)';
-divMain.style.width = '1000px';
-divMain.style.height = '50px';
-document.body.appendChild(divMain);
+// divMain.style.width = '1000px';
+// divMain.style.height = '50px';
+divMainDasMain.appendChild(divMain);
 
 // const filhosDivMain = divMain.children;
 // filhosDivMain.style.borderColor = 'black 1px';
@@ -93,7 +103,7 @@ function changeColor() {
 const button = document.createElement('button');
 button.textContent = 'Gerar cores aleatórias';
 document.body.appendChild(button);
-document.body.insertBefore(button, divMain);
+document.body.insertBefore(button, divMainDasMain);
 button.id = 'button-random-color';
 button.textContent = 'Cores aleatórias';
 button.addEventListener('click', changeColor);
@@ -119,3 +129,22 @@ button.addEventListener('click', changeColor);
 // https://www.mundojs.com.br/2019/07/18/diferencas-entre-innerhtml-innertext-e-textcontent/
 
 // 5 - Implemente uma função usando localStorage para que a paleta de cores gerada aleatoriamente seja mantida após recarregar a página.
+
+button.addEventListener('click', () => {
+  const colors = [];
+  for (let index = 0; index < colorsDiv.length; index += 1) {
+    colorsDiv[index].style.backgroundColor = colorGenerator();
+    colors.push(colorsDiv[index].style.backgroundColor);
+  }
+  return localStorage.setItem('colorPalette', JSON.stringify(colors));
+});
+
+const savedColors = JSON.parse(localStorage.getItem('colorPalette'));
+if (savedColors) {
+  for (let index = 0; index < colorsDiv.length; index += 1) {
+    colorsDiv[index].style.backgroundColor = savedColors[index];
+  }
+}
+
+// O vídeo do Nasc ajudou bastante para resolver esse requisito:
+// https://app.betrybe.com/learn/course/5e938f69-6e32-43b3-9685-c936530fd326/module/f04cdb21-382e-4588-8950-3b1a29afd2dd/section/c9aaef07-c868-42d6-aac9-b5a9116cba3d/lesson/c99f9115-37af-4612-a803-6f99d03757b0

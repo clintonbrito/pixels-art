@@ -1,19 +1,17 @@
-/* stylelint-disable indentation */
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
-#color-palette {
+/* #color-palette {
   margin-left: 50px;
-}
-
-.color {
-  width: 120px;
-  height: 120px;
-  border: 1px black;
-  margin: 10px;
-}
+} */
 
 body {
   background-color: rgb(244, 255, 243);
+}
+
+#color-pallete {
+  display: flex;
 }
