@@ -10,11 +10,11 @@
 const h1 = document.createElement('h1');
 h1.id = 'title';
 document.body.appendChild(h1);
-h1.innerHTML = 'Paleta de Cores';
+h1.textContent = 'Paleta de Cores';
 
 const divMain = document.createElement('div');
 divMain.id = 'color-palette';
-// divMain.innerHTML = 'Bem-vindo(a) à paleta de cores do Bill :)';
+// divMain.textContent = 'Bem-vindo(a) à paleta de cores do Bill :)';
 divMain.style.width = '1000px';
 divMain.style.height = '50px';
 document.body.appendChild(divMain);
@@ -53,7 +53,7 @@ const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
 const divBlack = document.createElement('div');
 divMain.appendChild(divBlack);
 divBlack.className = 'color color0';
-divBlack.innerHTML = `${divArray[0]}`;
+divBlack.textContent = `${divArray[0]}`;
 divBlack.style.display = 'inline-block';
 divBlack.style.width = '100px';
 divBlack.style.height = '100px';
@@ -64,8 +64,8 @@ divBlack.style.border = '1px solid rgb(0, 0, 0)';
 for (let index = 1; index < divArray.length; index += 1) {
   const div = document.createElement('div');
   divMain.appendChild(div);
-  div.className = `color color${index}`;
-  div.innerHTML = divArray[index];
+  div.className = `color colors color${index}`;
+  div.textContent = divArray[index];
   div.style.display = 'inline-block';
   div.style.width = '100px';
   div.style.height = '100px';
@@ -82,16 +82,40 @@ for (let index = 1; index < divArray.length; index += 1) {
 // title.parentNode
 // divBlack.insertBefore(button, divBlack);
 
+const colorsDiv = document.querySelectorAll('.colors');
+
+function changeColor() {
+  for (let index = 0; index < colorsDiv.length; index += 1) {
+    colorsDiv[index].style.backgroundColor = colorGenerator();
+  }
+}
+
 const button = document.createElement('button');
+button.textContent = 'Gerar cores aleatórias';
 document.body.appendChild(button);
 document.body.insertBefore(button, divMain);
 button.id = 'button-random-color';
-button.innerHTML = 'Cores aleatórias';
-button.addEventListener('click', colorGenerator());
+button.textContent = 'Cores aleatórias';
+button.addEventListener('click', changeColor);
+
+// Esse código logo abaixo foram tentativas frustradas de fazer funcionar o botão:
+
+// button.addEventListener('click', () => {
+//   for (const div of divMain.children) {
+//     if (div.classList.contains('color')) {
+//       div.style.backgroundColor = colorGenerator();
+//     }
+//   }
+
+// colorsDiv.forEach(div => {
+//   div.style.backgroundColor = colorGenerator();
+// }
 
 // Referência para criar o button ANTES da divMain:
 // https://stackoverflow.com/questions/2007357/how-to-set-dom-element-as-first-child
 // Referência para atribuir a função de gerar cores no botão criado:
 // https://stackoverflow.com/questions/67679502/how-to-generate-different-colours-with-button
+// Troquei todas as .innerHTML acima por textContent por questões de segurança, conforme artigo abaixo:
+// https://www.mundojs.com.br/2019/07/18/diferencas-entre-innerhtml-innertext-e-textcontent/
 
 // 5 - Implemente uma função usando localStorage para que a paleta de cores gerada aleatoriamente seja mantida após recarregar a página.
