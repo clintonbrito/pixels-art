@@ -4,14 +4,6 @@
   padding: 0px;
 }
 
-/* #color-palette {
-  margin-left: 50px;
-} */
-
 body {
   background-color: rgb(244, 255, 243);
-}
-
-#color-pallete {
-  display: flex;
 }

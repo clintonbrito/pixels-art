@@ -13,16 +13,17 @@ document.body.appendChild(h1);
 h1.textContent = 'Paleta de Cores';
 
 const divMainDasMain = document.createElement('div');
-divMainDasMain.id = 'mainDasMain';
+divMainDasMain.id = 'pixel-board';
 document.body.appendChild(divMainDasMain);
 divMainDasMain.style.display = 'flex';
 divMainDasMain.style.width = '100%';
 divMainDasMain.style.justifyContent = 'center';
+divMainDasMain.style.flexWrap = 'wrap';
 
 const divMain = document.createElement('div');
 divMain.id = 'color-palette';
-divMain.style.width = '50%';
-divMain.style.display = 'flex';
+divMain.style.width = '15%';
+// divMain.style.display = 'flex';
 divMain.style.justifyContent = 'space-evenly';
 // divMain.textContent = 'Bem-vindo(a) à paleta de cores do Bill :)';
 // divMain.style.width = '1000px';
@@ -58,15 +59,20 @@ const colorGenerator = () => {
 // https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
 // Só coloquei parseInt ao invés de Math.floor porque é o que estamos utilizando no momento.
 
-const divArray = ['Color 1', 'Color 2', 'Color 3', 'Color 4'];
+const numberColors = 25;
+const divArray = [];
+
+for (let index = 1; index <= numberColors; index += 1) {
+  divArray.push([index]);
+}
 
 const divBlack = document.createElement('div');
 divMain.appendChild(divBlack);
 divBlack.className = 'color color0';
 divBlack.textContent = `${divArray[0]}`;
 divBlack.style.display = 'inline-block';
-divBlack.style.width = '100px';
-divBlack.style.height = '100px';
+divBlack.style.width = '40px';
+divBlack.style.height = '40px';
 divBlack.style.backgroundColor = 'black';
 divBlack.style.color = 'white';
 divBlack.style.border = '1px solid rgb(0, 0, 0)';
@@ -74,11 +80,11 @@ divBlack.style.border = '1px solid rgb(0, 0, 0)';
 for (let index = 1; index < divArray.length; index += 1) {
   const div = document.createElement('div');
   divMain.appendChild(div);
-  div.className = `color colors color${index}`;
+  div.className = `color randomColors color${index}`;
   div.textContent = divArray[index];
   div.style.display = 'inline-block';
-  div.style.width = '100px';
-  div.style.height = '100px';
+  div.style.width = '40px';
+  div.style.height = '40px';
   div.style.backgroundColor = colorGenerator();
   div.style.border = '1px solid rgb(0, 0, 0)';
 }
@@ -92,11 +98,11 @@ for (let index = 1; index < divArray.length; index += 1) {
 // title.parentNode
 // divBlack.insertBefore(button, divBlack);
 
-const colorsDiv = document.querySelectorAll('.colors');
+const randomColors = document.querySelectorAll('.randomColors');
 
 function changeColor() {
-  for (let index = 0; index < colorsDiv.length; index += 1) {
-    colorsDiv[index].style.backgroundColor = colorGenerator();
+  for (let index = 0; index < randomColors.length; index += 1) {
+    randomColors[index].style.backgroundColor = colorGenerator();
   }
 }
 
@@ -117,7 +123,7 @@ button.addEventListener('click', changeColor);
 //     }
 //   }
 
-// colorsDiv.forEach(div => {
+// randomColors.forEach(div => {
 //   div.style.backgroundColor = colorGenerator();
 // }
 
@@ -132,19 +138,35 @@ button.addEventListener('click', changeColor);
 
 button.addEventListener('click', () => {
   const colors = [];
-  for (let index = 0; index < colorsDiv.length; index += 1) {
-    colorsDiv[index].style.backgroundColor = colorGenerator();
-    colors.push(colorsDiv[index].style.backgroundColor);
+  for (let index = 0; index < randomColors.length; index += 1) {
+    randomColors[index].style.backgroundColor = colorGenerator();
+    colors.push(randomColors[index].style.backgroundColor);
   }
   return localStorage.setItem('colorPalette', JSON.stringify(colors));
 });
 
 const savedColors = JSON.parse(localStorage.getItem('colorPalette'));
 if (savedColors) {
-  for (let index = 0; index < colorsDiv.length; index += 1) {
-    colorsDiv[index].style.backgroundColor = savedColors[index];
+  for (let index = 0; index < randomColors.length; index += 1) {
+    randomColors[index].style.backgroundColor = savedColors[index];
   }
 }
 
+// Explicação do algoritmo:
+// 1º - Criar um addEventListener no botão de gerar cores aleatórias para, quando clicado, executar uma função que irá armazenar as cores geradas pela função colorGenerator, que foram mapeadas através da classe 'radonmColors', em uma nova variável chamada 'savedColors';
+// 2º - Utilizar o laço de repetição for para iterar sobre os itens do "array" (comportamento de array dos itens mapeados pelo querySelectorAll) das cores que foram geradas aletoriamente;
+// 3º - Na medida que for iterando sobre cada item do array das cores que foram geradas aleatoriamente, incluir essa informação em um novo array chamado 'colors';
+// 4º - O retorno dessa função será jogar esses dados do array 'colors' no localStorage, convertendo em string via JSON.stringify;
+// 5º - [Esse foi o passo mais difícil abstrair: como fazer que esses dados armazenados no localStorage fossem transferidos para o backgroundColor do CSS das divs quando a página fosse atualizada. Eis a solução:]
+// 5º - Criar uma constante chamada savedColors em que será atribuída como valor nessa constante os valores do chave 'colorPallete' que foram salvos no localStorage;
+// 6º - Utilizar uma estrutura condicional para, se houver valores armazenados em 'savedColors', iterar sobre todos os itens desse array e, por fim, atribuir o valor de cada item desse aray à propriedade style.backgroundColor do CSS dessas divs.
+
 // O vídeo do Nasc ajudou bastante para resolver esse requisito:
 // https://app.betrybe.com/learn/course/5e938f69-6e32-43b3-9685-c936530fd326/module/f04cdb21-382e-4588-8950-3b1a29afd2dd/section/c9aaef07-c868-42d6-aac9-b5a9116cba3d/lesson/c99f9115-37af-4612-a803-6f99d03757b0
+
+// 6 - Adicione à página um quadro contendo 25 pixels.
+
+const color = document.getElementsByClassName('color');
+for (let index = 0; index < color.length; index += 1) {
+  color[index].style.maxWidth = '20%';
+}
