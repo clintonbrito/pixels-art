@@ -1,8 +1,4 @@
-// // Crie um filho para primeiroFilhoDoFilho.
-// const primeiroFilhoDoFilho = document.getElementById('primeiroFilhoDoFilho');
-// const filhoPrimeiroFilhoDoFilho = document.createElement('section');
-// filhoPrimeiroFilhoDoFilho.id = 'filhoPrimeiroFilhoDoFilho';
-// primeiroFilhoDoFilho.appendChild(filhoPrimeiroFilhoDoFilho);
+// Crie um filho para primeiroFilhoDoFilho.
 
 // 1 - Adicione à página o título "Paleta de Cores".
 
@@ -264,3 +260,15 @@ for (let index = 0; index < colorFromPalette.length; index += 1) {
 //     randomColors[index].style.backgroundColor = savedColors[index];
 //   }
 // }
+
+// 10 - Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores.
+
+const colorPixel = document.querySelectorAll('.pixel');
+
+for (let index = 0; index < colorPixel.length; index += 1) {
+  colorPixel[index].addEventListener('click', () => {
+    colorPixel.forEach((item) => item.classList.remove('selected'));
+    colorPixel[index].classList.add('selected');
+    choseColor(index);
+  });
+}
