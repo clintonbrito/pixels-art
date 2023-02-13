@@ -11,9 +11,10 @@ const h1 = document.createElement('h1');
 h1.id = 'title';
 document.body.appendChild(h1);
 h1.textContent = 'Paleta de Cores';
+h1.style.fontFamily = 'sans-serif';
 
 const divMainDasMain = document.createElement('div');
-divMainDasMain.id = 'pixel-board';
+divMainDasMain.id = 'main-color-palette';
 document.body.appendChild(divMainDasMain);
 divMainDasMain.style.display = 'flex';
 divMainDasMain.style.width = '100%';
@@ -59,17 +60,17 @@ const colorGenerator = () => {
 // https://stackoverflow.com/questions/51628092/random-rgb-color-generator-with-javascript
 // Só coloquei parseInt ao invés de Math.floor porque é o que estamos utilizando no momento.
 
-const numberColors = 25;
-const divArray = [];
+const numberColors = 4;
+const divPalette = [];
 
 for (let index = 1; index <= numberColors; index += 1) {
-  divArray.push([index]);
+  divPalette.push([index]);
 }
 
 const divBlack = document.createElement('div');
 divMain.appendChild(divBlack);
 divBlack.className = 'color color0';
-divBlack.textContent = `${divArray[0]}`;
+divBlack.textContent = `${divPalette[0]}`;
 divBlack.style.display = 'inline-block';
 divBlack.style.width = '40px';
 divBlack.style.height = '40px';
@@ -77,11 +78,11 @@ divBlack.style.backgroundColor = 'black';
 divBlack.style.color = 'white';
 divBlack.style.border = '1px solid rgb(0, 0, 0)';
 
-for (let index = 1; index < divArray.length; index += 1) {
+for (let index = 1; index < divPalette.length; index += 1) {
   const div = document.createElement('div');
   divMain.appendChild(div);
   div.className = `color randomColors color${index}`;
-  div.textContent = divArray[index];
+  div.textContent = divPalette[index];
   div.style.display = 'inline-block';
   div.style.width = '40px';
   div.style.height = '40px';
@@ -166,7 +167,41 @@ if (savedColors) {
 
 // 6 - Adicione à página um quadro contendo 25 pixels.
 
-const color = document.getElementsByClassName('color');
-for (let index = 0; index < color.length; index += 1) {
-  color[index].style.maxWidth = '20%';
+const mainSectionPixels = document.createElement('section');
+mainSectionPixels.id = 'main-pixel-board';
+document.body.appendChild(mainSectionPixels);
+mainSectionPixels.style.display = 'flex';
+mainSectionPixels.style.width = '100%';
+mainSectionPixels.style.justifyContent = 'center';
+
+const sectionPixels = document.createElement('section');
+sectionPixels.id = 'pixel-board';
+mainSectionPixels.appendChild(sectionPixels);
+sectionPixels.style.width = '17%';
+sectionPixels.style.display = 'flex';
+sectionPixels.style.justifyContent = 'space-evenly';
+sectionPixels.style.flexWrap = 'wrap';
+
+const numberPixels = 25;
+const divPixel = [];
+
+for (let index = 0; index < numberPixels; index += 1) {
+  divPixel.push([index]);
 }
+
+for (let index = 0; index < numberPixels; index += 1) {
+  const div = document.createElement('div');
+  sectionPixels.appendChild(div);
+  div.className = `pixel pixel${index}`;
+  div.textContent = [index]; // Remover esta linha para não aparecer mais o textContent de cada div
+  div.style.display = 'inline-block';
+  div.style.width = '40px';
+  div.style.height = '40px';
+  div.style.backgroundColor = 'white';
+  div.style.border = '1px solid rgb(0, 0, 0)';
+}
+
+// const color = document.getElementsByClassName('pixel');
+// for (let index = 0; index < color.length; index += 1) {
+//   color[index].style.maxWidth = '20%';
+// }
