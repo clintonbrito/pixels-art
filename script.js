@@ -6,7 +6,6 @@
 
 // 1 - Adicione à página o título "Paleta de Cores".
 
-// const body = document.getElementsByTagName('body');
 const h1 = document.createElement('h1');
 h1.id = 'title';
 document.body.appendChild(h1);
@@ -69,8 +68,7 @@ for (let index = 1; index <= numberColors; index += 1) {
 
 const divBlack = document.createElement('div');
 divMain.appendChild(divBlack);
-divBlack.className = 'color color0';
-divBlack.textContent = `${divPalette[0]}`;
+divBlack.className = 'color color0 selected';
 divBlack.style.display = 'inline-block';
 divBlack.style.width = '40px';
 divBlack.style.height = '40px';
@@ -82,7 +80,6 @@ for (let index = 1; index < divPalette.length; index += 1) {
   const div = document.createElement('div');
   divMain.appendChild(div);
   div.className = `color randomColors color${index}`;
-  div.textContent = divPalette[index];
   div.style.display = 'inline-block';
   div.style.width = '40px';
   div.style.height = '40px';
@@ -193,7 +190,6 @@ for (let index = 0; index < numberPixels; index += 1) {
   const div = document.createElement('div');
   sectionPixels.appendChild(div);
   div.className = `pixel pixel${index}`;
-  div.textContent = [index]; // Remover esta linha para não aparecer mais o textContent de cada div
   div.style.display = 'inline-block';
   div.style.width = '40px';
   div.style.height = '40px';
@@ -204,4 +200,67 @@ for (let index = 0; index < numberPixels; index += 1) {
 // const color = document.getElementsByClassName('pixel');
 // for (let index = 0; index < color.length; index += 1) {
 //   color[index].style.maxWidth = '20%';
+// }
+
+// 8 - Defina a cor preta como cor inicial da paleta de cores.
+// 9 - Crie uma função para selecionar uma cor na paleta de cores.
+
+const colorFromPalette = document.querySelectorAll('.color');
+
+for (let index = 0; index < colorFromPalette.length; index += 1) {
+  colorFromPalette[index].addEventListener('click', () => {
+    colorFromPalette.forEach((item) => item.classList.remove('selected'));
+    colorFromPalette[index].classList.add('selected');
+  });
+}
+
+// Esses links do Stack Overflow me ajudaram bastante a construir essa função acima, porque eu não estava conseguindo iterar em items de uma NodeList que é o que retorna a propriedade querySelectorAll, ao invés de um array tradicional:
+// https://stackoverflow.com/questions/71044876/how-can-i-add-or-remove-class-using-queryselectorall-in-react-functional-compo
+// https://stackoverflow.com/questions/73575388/uncaught-typeerror-navitem-foreach-is-not-a-function
+
+let chosenColor;
+
+function choseColor(index) {
+  chosenColor = colorFromPalette[index].style.backgroundColor;
+}
+
+for (let index = 0; index < colorFromPalette.length; index += 1) {
+  colorFromPalette[index].addEventListener('click', () => choseColor(index));
+}
+
+// Algoritmo da solução acima:
+// 1º Criar uma variável chamada 'chosenColor' que irá receber a cor do eventListener do click na cor;
+// 2º Criar uma função que irá atribuir à variável 'chosenColor' o valor do "índice" do "array" colorFromPallete que foi feito através de querySelectorAll;
+// 3º Por meio de um loop for, iterar sobre todos os itens do "array" colorFromPalette e adicionar um addEventListener que, quando clicado, execute a função choseColor;
+
+// Esses códigos logo abaixo foram tentativas frustradas de resolver os requisitos 8 e 9:
+
+// const colorFromPalette = document.getElementsByClassName('color');
+// let chosenColor;
+
+// for (let index = 0; index < colorFromPalette.length; index += 1) {
+//   colorFromPalette[index].addEventListener('click', () => {
+//     chosenColor = colorFromPalette[index].style.backgroundColor;
+//   });
+// }
+
+// for (let index = 0; index < colorFromPalette.length; index += 1) {
+//   colorFromPalette[index].addEventListener('click', () => {
+//     colorFromPalette[index].style.backgroundColor = chosenColor;
+//   });
+// }
+
+// chosenColor.addEventListener('click', () => {
+//   const chosenColorInfo = [];
+//       randomColors[index].style.backgroundColor = colorGenerator();
+//     color.push(chosenColorInfo[index].style.backgroundColor);
+//   }
+//   return localStorage.setItem('chosenColor', JSON.stringify(chosenColorInfo));
+// });
+
+// const savedColors = JSON.parse(localStorage.getItem('colorPalette'));
+// if (savedColors) {
+//   for (let index = 0; index < randomColors.length; index += 1) {
+//     randomColors[index].style.backgroundColor = savedColors[index];
+//   }
 // }
