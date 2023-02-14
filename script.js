@@ -216,12 +216,15 @@ for (let index = 0; index < colorFromPalette.length; index += 1) {
 
 const choseColor = (clicar) => {
   const selectedColor = document.getElementsByClassName('selected')[0];
-  clicar.target.style.backgroundColor = selectedColor.style.backgroundColor;
+  const clicar2 = clicar.target;
+  clicar2.style.backgroundColor = selectedColor.style.backgroundColor;
   console.log(selectedColor.style.backgroundColor);
 };
 
 const pixelDivs = document.getElementById('pixel-board');
 pixelDivs.addEventListener('click', choseColor);
+
+// Essa função acima só foi possível ser realizada com as incomensuráveis contribuições do nobre Cauê Peruque em elucidar acerca da lógica utilizada nela.
 
 // for (let index = 0; index < pixelDivs.length; index += 1) {
 //   pixelDivs[index].addEventListener('click', choseColor);
