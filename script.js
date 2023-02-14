@@ -263,12 +263,19 @@ for (let index = 0; index < colorFromPalette.length; index += 1) {
 
 // 10 - Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores.
 
-const colorPixel = document.querySelectorAll('.pixel');
+// 11 - Crie um botão que retorne a cor do quadro para a cor inicial.
 
-for (let index = 0; index < colorPixel.length; index += 1) {
-  colorPixel[index].addEventListener('click', () => {
-    colorPixel.forEach((item) => item.classList.remove('selected'));
-    colorPixel[index].classList.add('selected');
-    choseColor(index);
-  });
+const pixelDivs = document.getElementsByClassName('pixel');
+
+function clearColors() {
+  for (let index = 0; index < pixelDivs.length; index += 1) {
+    pixelDivs[index].style.backgroundColor = 'rgb(255 255 255)';
+  }
 }
+
+const buttonClear = document.createElement('button');
+buttonClear.textContent = 'Limpar';
+document.body.appendChild(buttonClear);
+document.body.insertBefore(buttonClear, mainSectionPixels);
+buttonClear.id = 'clear-board';
+buttonClear.addEventListener('click', clearColors);
