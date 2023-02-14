@@ -266,8 +266,6 @@ pixelDivs.addEventListener('click', choseColor);
 
 // 10 - Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores.
 
-
-
 // 11 - Crie um botão que retorne a cor do quadro para a cor inicial.
 
 function clearColors() {
@@ -282,4 +280,3 @@ document.body.appendChild(buttonClear);
 document.body.insertBefore(buttonClear, mainSectionPixels);
 buttonClear.id = 'clear-board';
 buttonClear.addEventListener('click', clearColors);
-
