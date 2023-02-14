@@ -214,15 +214,18 @@ for (let index = 0; index < colorFromPalette.length; index += 1) {
 // https://stackoverflow.com/questions/71044876/how-can-i-add-or-remove-class-using-queryselectorall-in-react-functional-compo
 // https://stackoverflow.com/questions/73575388/uncaught-typeerror-navitem-foreach-is-not-a-function
 
-let chosenColor;
+const choseColor = (clicar) => {
+  const selectedColor = document.getElementsByClassName('selected')[0];
+  clicar.target.style.backgroundColor = selectedColor.style.backgroundColor;
+  console.log(selectedColor.style.backgroundColor);
+};
 
-function choseColor(index) {
-  chosenColor = colorFromPalette[index].style.backgroundColor;
-}
+const pixelDivs = document.getElementById('pixel-board');
+pixelDivs.addEventListener('click', choseColor);
 
-for (let index = 0; index < colorFromPalette.length; index += 1) {
-  colorFromPalette[index].addEventListener('click', () => choseColor(index));
-}
+// for (let index = 0; index < pixelDivs.length; index += 1) {
+//   pixelDivs[index].addEventListener('click', choseColor);
+// }
 
 // Algoritmo da solução acima:
 // 1º Criar uma variável chamada 'chosenColor' que irá receber a cor do eventListener do click na cor;
@@ -263,13 +266,13 @@ for (let index = 0; index < colorFromPalette.length; index += 1) {
 
 // 10 - Crie uma função que permita preencher um pixel do quadro com a cor selecionada na paleta de cores.
 
-// 11 - Crie um botão que retorne a cor do quadro para a cor inicial.
 
-const pixelDivs = document.getElementsByClassName('pixel');
+
+// 11 - Crie um botão que retorne a cor do quadro para a cor inicial.
 
 function clearColors() {
   for (let index = 0; index < pixelDivs.length; index += 1) {
-    pixelDivs[index].style.backgroundColor = 'rgb(255 255 255)';
+    pixelDivs[index].style.backgroundColor = 'white';
   }
 }
 
@@ -279,3 +282,4 @@ document.body.appendChild(buttonClear);
 document.body.insertBefore(buttonClear, mainSectionPixels);
 buttonClear.id = 'clear-board';
 buttonClear.addEventListener('click', clearColors);
+
