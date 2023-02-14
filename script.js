@@ -170,7 +170,7 @@ mainSectionPixels.style.justifyContent = 'center';
 const sectionPixels = document.createElement('section');
 sectionPixels.id = 'pixel-board';
 mainSectionPixels.appendChild(sectionPixels);
-sectionPixels.style.width = '17%';
+sectionPixels.style.width = '200px';
 sectionPixels.style.display = 'flex';
 sectionPixels.style.justifyContent = 'space-evenly';
 sectionPixels.style.flexWrap = 'wrap';
@@ -269,8 +269,9 @@ pixelDivs.addEventListener('click', choseColor);
 // 11 - Crie um botão que retorne a cor do quadro para a cor inicial.
 
 function clearColors() {
-  for (let index = 0; index < pixelDivs.length; index += 1) {
-    pixelDivs[index].style.backgroundColor = 'white';
+  const divPixel2 = document.getElementsByClassName('pixel');
+  for (let index = 0; index < divPixel2.length; index += 1) {
+    divPixel2[index].style.backgroundColor = 'white';
   }
 }
 
